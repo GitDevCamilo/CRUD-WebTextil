@@ -1,0 +1,79 @@
+---
+import Layout from "../layouts/Layout.astro";
+import { getClients } from "../db/index.ts";
+import TrashIcon from "../components/icons/trash.astro";
+import EditIcon from "../components/icons/edit.astro";
+
+interface Client {
+  clie_id: number;
+  clie_nombre: string;
+  clie_apellido: string;
+  clie_telefono: string;
+}
+
+const clients: Client[] = await getClients(); // Espera a que la promesa se resuelva
+
+export const meta = {
+  title: "Clientes",
+};
+
+console.log(clients);
+---
+
+<Layout title="Clientes">
+  <div class="flex justify-start mb-4 space-x-96">
+    <a
+      href="/"
+      class="bg-blue-300 hover:bg-blue-200 text-black font-bold py-2 px-4 rounded mr-80">
+      Regresar
+    </a>
+    <a
+      href="/"
+      class="bg-blue-300 hover:bg-blue-200 text-black font-bold py-2 px-4 rounded">
+      Nuevo Cliente
+    </a>
+  </div>
+  <table
+    class="table-auto shadow-lg bg-[#fff] w-full md:w-[80%] lg:w-[70%] xl:w-[70%]">
+    <thead class="border-b-[5px] border-[#eee] text-left">
+      <tr>
+        <th class="px-4 py-4">ID</th>
+        <th class="px-4 py-4">Nombre</th>
+        <th class="px-4 py-4">Telefono</th>
+        <th class="px-4 py-4">Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      {
+        clients.map((client) => (
+          <tr class="hover:bg-[#ded]">
+            <td class="border-[2px] border-[#fff] px-4 py-2 w-[6%]">
+              {client.clie_id}
+            </td>
+            <td class="border-[2px] border-[#fff] px-4 py-2">
+              {client.clie_nombre}
+            </td>
+            <td class="border-[2px] border-[#fff] px-4 py-2 w-[30%]">
+              {client.clie_telefono}
+            </td>
+            <td class="border-[2px] border-[#fff] px-4 py-2 w-[12.5%]">
+              <form action={`/loans/${client.clie_id}`} method="post">
+                <input type="hidden" name="_method" value="DELETE" />
+                <button
+                  type="submit"
+                  class="bg-blue-200 hover:bg-blue-300 font-bold py-2 px-2 rounded">
+                  <EditIcon />
+                </button>
+                <button
+                  type="submit"
+                  class="bg-red-400 hover:bg-red-500 font-bold py-2 px-2 rounded">
+                  <TrashIcon />
+                </button>
+              </form>
+            </td>
+          </tr>
+        ))
+      }
+    </tbody>
+  </table>
+</Layout>

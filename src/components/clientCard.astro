@@ -1,0 +1,24 @@
+---
+import Card from "./Card/index.astro";
+---
+
+<Card
+  href="/clients"
+  colSpan="lg:col-span-3"
+  rowSpan="md:row-span-2"
+  title="Clientes">
+  <div class="flex w-full h-full">
+    <div class="flex flex-col justify-between md:max-h-[300px] gap-4">
+      <div class="flex flex-col h-full">
+        <h6 class="text-sm font-light m-0 text-gray-500">
+          Clientes más comunes
+        </h6>
+        <p class="m-0 font-light text-xl">
+          Clientes <b class="font-bold">de mas frecuencias</b>, Lorem ipsum
+          dolor sit amet consectetur adipisicing elit!.
+        </p>
+      </div>
+    </div>
+    <img src="ganador.png" alt="logo" />
+  </div>
+</Card>

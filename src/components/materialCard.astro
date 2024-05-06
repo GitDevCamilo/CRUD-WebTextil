@@ -1,0 +1,20 @@
+---
+import Card from "./Card/index.astro";
+import Button from "./Button.astro";
+---
+
+<Card href="/materials" colSpan="md:col-span-3" rowSpan="md:row-span-4">
+  <div class="flex w-full h-full">
+    <div class="flex flex-col justify-between md:max-h-[300px] gap-4">
+      <div class="flex flex-col h-full">
+        <h6 class="text-sm font-light m-0 text-gray-500">Almacen</h6>
+        <p class="m-0 font-light text-xl">
+          Bienvenido <b class="font-bold">Camilo Meneses</b>, consulta la
+          materia prima disponible actualmente en bodega
+        </p>
+      </div>
+     
+    </div>
+    <img src="bola-de-hilo.png" alt="logo" />
+  </div>
+</Card>
